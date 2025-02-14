@@ -3,7 +3,12 @@ import pickle
 import numpy as np
 import MySQLdb
 
-app = Flask(__name__)
+app = Flask(__name__)  # Ensure this exists
+
+@app.route("/")
+def home():
+    return "Hello, Render!"
+
 
 # Load trained model and scaler
 with open("model.pkl", "rb") as model_file:
@@ -57,5 +62,7 @@ def predict():
     except Exception as e:
         return f"Error: {str(e)}"
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
