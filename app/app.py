@@ -1,8 +1,10 @@
-from flask import  render_template, request
+from flask import Flask, render_template, request
 import pickle
 import numpy as np
 import MySQLdb
-from flask import Flask
+
+app = Flask(__name__)
+
 # Load trained model and scaler
 with open("model.pkl", "rb") as model_file:
     model = pickle.load(model_file)
@@ -18,13 +20,12 @@ db = MySQLdb.connect(
 )
 cursor = db.cursor()
 
-
-
-
+# Home route (now correctly defined once)
 @app.route('/')
 def home():
     return render_template('index.html')
 
+# Prediction route
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -55,16 +56,6 @@ def predict():
 
     except Exception as e:
         return f"Error: {str(e)}"
-
-
-
-
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return "Hello, World!"
 
 if __name__ == "__main__":
     app.run(debug=True)
