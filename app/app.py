@@ -18,7 +18,14 @@ db = MySQLdb.connect(
 )
 cursor = db.cursor()
 
+# app.py
+
 app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return "Hello, World!"
+
 
 @app.route('/')
 def home():
@@ -54,10 +61,6 @@ def predict():
 
     except Exception as e:
         return f"Error: {str(e)}"
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-
 
 
 
