@@ -1,6 +1,6 @@
 Flask==3.0.0
 numpy>=1.26.2
-pandas==2.1.1
+pandas==2.2.0
 scikit-learn==1.6.0
 imblearn==0.0
 mysqlclient==2.2.0  # For MySQL database connection
